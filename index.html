@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123d43">
+  <meta name="description" content="Simule condições de pagamento, compare opções e prepare uma apresentação clara para o cliente.">
+  <title>Clareza — Simulador de pagamentos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#pagamentos" aria-label="Clareza, início">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none"><path d="M18 3.5 21.3 14l10.2 4-10.2 4L18 32.5 14.7 22 4.5 18l10.2-4L18 3.5Z" fill="currentColor"/><circle cx="18" cy="18" r="3.1" fill="#F7F4EB"/></svg>
+        </span>
+        <span class="brand-copy"><strong>clareza</strong><small>pagamentos com propósito</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="local-status"><span></span> Configurações locais</span>
+        <button class="icon-button" id="openSettings" type="button" aria-label="Configurar marca e impressão" title="Configurações">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="m19.4 15 .1.1a1.7 1.7 0 0 1-2.4 2.4l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a1.7 1.7 0 0 1-3.4 0v-.2a1.7 1.7 0 0 0-2.9-1.2l-.1.1a1.7 1.7 0 1 1-2.4-2.4l.1-.1a1.7 1.7 0 0 0-1.2-2.9H4a1.7 1.7 0 0 1 0-3.4h.2a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a1.7 1.7 0 1 1 2.4-2.4l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a1.7 1.7 0 0 1 3.4 0v.2a1.7 1.7 0 0 0 2.9 1.2l.1-.1a1.7 1.7 0 1 1 2.4 2.4l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a1.7 1.7 0 0 1 0 3.4h-.2a1.7 1.7 0 0 0-1.2 2.9Z"/></svg>
+        </button>
+        <button class="button button-dark button-new" id="newSimulation" type="button"><span aria-hidden="true">＋</span> Nova simulação</button>
+      </div>
+    </header>
+
+    <nav class="main-nav" aria-label="Seções do simulador">
+      <button class="nav-tab is-active" type="button" data-tab="payments" aria-current="page"><span class="nav-number">01</span> Pagamentos</button>
+      <button class="nav-tab" type="button" data-tab="taxes"><span class="nav-number">02</span> IPTU e taxas</button>
+      <span class="nav-note">Uma proposta clara começa com bons números.</span>
+    </nav>
+
+    <main>
+      <section class="tab-panel is-active" id="panel-payments" data-panel="payments">
+        <div class="page-intro">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> SIMULADOR DE PAGAMENTOS</div>
+            <h1>Apresente as opções.<br><em>Deixe a escolha clara.</em></h1>
+            <p class="intro-copy">Monte condições, compare caminhos e gere um plano de pagamento pronto para conversar com o cliente.</p>
+          </div>
+          <div class="intro-art" aria-hidden="true">
+            <div class="art-ring ring-one"></div><div class="art-ring ring-two"></div>
+            <div class="art-card"><span class="art-spark">✳</span><span class="art-card-label">PLANO DE PAGAMENTO</span><strong>3 caminhos.<br>Uma escolha segura.</strong><i class="art-rule"></i><span class="art-card-foot">CLAREZA, DO COMEÇO AO FIM</span></div>
+            <span class="art-dot dot-a"></span><span class="art-dot dot-b"></span>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="form-column">
+            <section class="panel-card presentation-card" aria-labelledby="presentationTitle">
+              <div class="section-heading">
+                <span class="section-index">01</span>
+                <div><h2 id="presentationTitle">Dados da apresentação</h2><p>Informações que poderão aparecer no documento.</p></div>
+                <button class="quiet-button" id="togglePresentation" type="button" aria-expanded="true">Recolher <span aria-hidden="true">⌃</span></button>
+              </div>
+              <div class="form-grid presentation-fields" id="presentationFields">
+                <label class="field span-two"><span>Cliente / destinatário</span><input id="clientName" autocomplete="name" placeholder="Nome de quem vai receber a proposta"></label>
+                <label class="field span-two"><span>Serviço ou negociação</span><input id="serviceName" placeholder="Ex.: assessoria documental do imóvel"></label>
+                <label class="field"><span>Número da proposta <small>gerado automaticamente</small></span><input id="proposalRef" placeholder="Gerando número..."></label>
+                <label class="field"><span>Emissão</span><input id="issueDate" type="date"></label>
+                <label class="field"><span>Validade até <small>opcional</small></span><input id="validUntil" type="date"></label>
+                <label class="field"><span>Observações <small>opcional</small></span><input id="proposalNote" placeholder="Ex.: valores sujeitos à aprovação"></label>
+              </div>
+            </section>
+
+            <section class="panel-card amount-card" aria-labelledby="amountTitle">
+              <div class="section-heading">
+                <span class="section-index">02</span>
+                <div><h2 id="amountTitle">Valor e condição</h2><p>Escolha um formato para montar a simulação.</p></div>
+              </div>
+              <label class="field amount-field"><span>Valor total</span><div class="currency-input"><span>R$</span><input id="totalValue" data-money inputmode="decimal" placeholder="0,00" aria-label="Valor total em reais"></div></label>
+              <div class="condition-switch" role="group" aria-label="Condição de pagamento">
+                <button type="button" data-condition="cash" class="condition-option is-selected" aria-pressed="true"><span class="condition-icon">↗</span><span><strong>À vista</strong><small>com ou sem desconto</small></span><span class="radio-mark"></span></button>
+                <button type="button" data-condition="installments" class="condition-option" aria-pressed="false"><span class="condition-icon">▤</span><span><strong>Parcelado</strong><small>sem entrada</small></span><span class="radio-mark"></span></button>
+                <button type="button" data-condition="downpayment" class="condition-option" aria-pressed="false"><span class="condition-icon">↓</span><span><strong>Entrada + parcelas</strong><small>saldo dividido no prazo</small></span><span class="radio-mark"></span></button>
+              </div>
+
+              <div class="condition-fields" id="cashFields" data-fields="cash">
+                <div class="form-grid">
+                  <label class="field"><span>Data do pagamento</span><input id="cashDate" type="date"></label>
+                  <label class="field"><span>Tipo de desconto</span><select id="discountType"><option value="percent">Percentual (%)</option><option value="fixed">Valor em reais</option></select></label>
+                  <label class="field"><span id="discountLabel">Desconto</span><div class="input-suffix"><input id="discountValue" type="number" min="0" step="0.01" value="0"><span id="discountSuffix">%</span></div></label>
+                  <div class="field result-field"><span>Economia para o cliente</span><strong id="discountSaving">R$ 0,00</strong></div>
+                </div>
+              </div>
+              <div class="condition-fields is-hidden" id="installmentFields" data-fields="installments" hidden>
+                <div class="form-grid">
+                  <div class="field"><label class="field-label" for="installmentCount">Número de parcelas</label><div class="number-stepper"><button type="button" data-stepper-target="installmentCount" data-step="-1" aria-label="Diminuir número de parcelas">−</button><input id="installmentCount" type="number" min="1" max="360" step="1" value="6"><button type="button" data-stepper-target="installmentCount" data-step="1" aria-label="Aumentar número de parcelas">+</button></div></div>
+                  <label class="field"><span>Primeiro vencimento</span><input id="installmentFirstDate" type="date"></label>
+                  <div class="field result-field"><span>Valor estimado por parcela</span><strong id="installmentPreview">R$ 0,00</strong></div>
+                </div>
+              </div>
+              <div class="condition-fields is-hidden" id="downpaymentFields" data-fields="downpayment" hidden>
+                <div class="form-grid">
+                  <label class="field"><span>Valor da entrada</span><div class="currency-input compact"><span>R$</span><input id="downpaymentValue" data-money inputmode="decimal" placeholder="0,00"></div></label>
+                  <label class="field"><span>Data da entrada</span><input id="downpaymentDate" type="date"></label>
+                  <div class="field"><label class="field-label" for="downpaymentCount">Número de parcelas do saldo</label><div class="number-stepper number-stepper-featured"><button type="button" data-stepper-target="downpaymentCount" data-step="-1" aria-label="Diminuir número de parcelas do saldo">−</button><input id="downpaymentCount" type="number" min="1" max="360" step="1" value="6"><button type="button" data-stepper-target="downpaymentCount" data-step="1" aria-label="Aumentar número de parcelas do saldo">+</button></div></div>
+                  <label class="field"><span>Primeiro vencimento do saldo</span><input id="downpaymentFirstDate" type="date"></label>
+                  <div class="field result-field"><span>Saldo a parcelar</span><strong id="remainingBalance">R$ 0,00</strong></div>
+                  <div class="field result-field"><span>Valor estimado por parcela</span><strong id="downpaymentPreview">R$ 0,00</strong></div>
+                </div>
+                <p class="field-hint">A primeira data começa 30 dias após a entrada. Você pode editar o vencimento.</p>
+              </div>
+            </section>
+
+            <section class="panel-card comparison-card" aria-labelledby="comparisonTitle">
+              <div class="section-heading section-heading-compact">
+                <span class="section-index">03</span>
+                <div><h2 id="comparisonTitle">Compare as opções</h2><p>Os cenários acompanham o valor total. Selecione um para detalhar.</p></div>
+              </div>
+              <div class="scenario-controls">
+                <label>À vista: <input id="scenarioDiscount" type="number" min="0" max="100" step="1" value="10"><span>% de desconto</span></label>
+                <label>Opção A: <input id="scenarioA" type="number" min="1" max="360" value="6"><span>parcelas</span></label>
+                <label>Opção B: <input id="scenarioB" type="number" min="1" max="360" value="12"><span>parcelas</span></label>
+                <label>Entrada: <input id="scenarioEntryPercent" type="number" min="0" max="99" value="20"><span>% +</span></label>
+                <label><input id="scenarioEntryCount" type="number" min="1" max="360" value="10"><span>parcelas</span></label>
+              </div>
+              <div class="scenario-grid" id="scenarioGrid" aria-live="polite"></div>
+            </section>
+          </div>
+
+          <aside class="result-column">
+            <div class="result-sticky">
+              <section class="result-panel" aria-labelledby="resultTitle">
+                <div class="result-topline"><span class="live-mark"></span> SIMULAÇÃO ATUALIZADA</div>
+                <div class="result-heading"><h2 id="resultTitle">Resumo da condição</h2><span class="result-glyph" aria-hidden="true">✳</span></div>
+                <div class="summary-content" id="summaryContent"><div class="empty-summary"><span>01</span><strong>Comece pelo valor total</strong><p>As opções e o cronograma aparecem aqui enquanto você preenche.</p></div></div>
+                <div class="summary-separator"></div>
+                <div class="result-actions">
+                  <label class="print-mode"><span>Imprimir</span><select id="printMode"><option value="selected">Condição escolhida</option><option value="comparison">Comparação das opções</option></select></label>
+                  <button class="button button-accent button-wide" id="printButton" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/></svg> Pré-visualizar impressão</button>
+                  <button class="button button-outline button-wide" id="copyWhatsApp" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7l-4.2 1 1.1-4A8 8 0 1 1 20 11.5Z"/><path d="M9 9c.5 2 2 3.5 4 4l1-1 2 1-.5 2c-4 1-8.5-3-8-6l1.5-1 .5 1Z"/></svg> Copiar resumo para WhatsApp</button>
+                  <p class="action-feedback" id="actionFeedback" aria-live="polite"></p>
+                </div>
+              </section>
+              <div class="privacy-note"><span aria-hidden="true">◌</span> Seus dados ficam neste navegador. O Clareza não envia a simulação para um servidor.</div>
+            </div>
+          </aside>
+        </div>
+
+        <section class="panel-card schedule-card" aria-labelledby="scheduleTitle">
+          <div class="schedule-heading"><div class="section-heading section-heading-compact"><span class="section-index">04</span><div><h2 id="scheduleTitle">Cronograma de pagamento</h2><p>Confira datas, valores e saldo de cada etapa.</p></div></div><span class="schedule-count" id="scheduleCount">Aguardando simulação</span></div>
+          <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Etapa</th><th>Vencimento</th><th>Valor</th><th>Saldo após pagamento</th></tr></thead><tbody id="scheduleBody"><tr class="empty-row"><td colspan="4">Informe o valor e a condição para montar o cronograma.</td></tr></tbody></table></div>
+          <div class="schedule-footer"><span><i class="tiny-dot"></i> Os centavos restantes são ajustados na última parcela.</span><label class="include-costs"><input id="includeTaxCosts" type="checkbox"> Incluir as taxas selecionadas na impressão</label></div>
+        </section>
+        <footer class="page-footer"><span>CLAREZA · PLANO DE PAGAMENTO</span><span>Valores calculados para fins de proposta comercial.</span></footer>
+      </section>
+
+      <section class="tab-panel taxes-panel" id="panel-taxes" data-panel="taxes" hidden>
+        <div class="page-intro taxes-intro">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> ESTIMATIVA DE DESPESAS</div><h1>IPTU e taxas.<br><em>Em uma conta separada.</em></h1><p class="intro-copy">Calcule custos municipais estimados e escolha se deseja discriminar esses valores na impressão do pagamento.</p></div>
+          <div class="taxes-intro-note"><span>PVH · REFERÊNCIA 2026</span><p>Os parâmetros iniciais vieram do material fornecido. Confirme a tabela e o DAM vigente antes de apresentar uma estimativa.</p></div>
+        </div>
+        <div class="taxes-layout">
+          <div class="taxes-main">
+            <section class="panel-card tax-quick-card">
+              <div class="section-heading"><span class="section-index">A</span><div><h2>Estimativas rápidas</h2><p>Informe a base de cálculo e inclua cada item no atendimento.</p></div></div>
+              <div class="upf-strip"><div><span>UPF de referência</span><small>Parâmetro editável · exercício 2026</small></div><div class="currency-input compact"><span>R$</span><input id="upfValue" data-money inputmode="decimal" value="108,52" aria-label="Valor da UPF de referência"></div></div>
+              <div class="quick-tax-grid">
+                <article class="quick-tax"><div class="quick-tax-icon">%</div><div class="quick-tax-title"><h3>ITBI</h3><p>2% sobre o valor de avaliação informado</p></div><label class="field"><span>Base de cálculo</span><div class="currency-input compact"><span>R$</span><input id="itbiBase" data-money inputmode="decimal" placeholder="0,00"></div></label><div class="quick-tax-output"><span>Estimativa</span><strong id="itbiResult">R$ 0,00</strong></div><button class="button button-mini button-outline" data-add-quick="itbi" type="button">+ incluir</button></article>
+                <article class="quick-tax"><div class="quick-tax-icon">⌂</div><div class="quick-tax-title"><h3>Alvará de construção</h3><p>Coeficiente por metro quadrado × UPF</p></div><div class="field-row"><label class="field"><span>Área</span><div class="input-suffix"><input id="permitArea" type="number" min="0" step="0.01" placeholder="0"><span>m²</span></div></label><label class="field"><span>Uso</span><select id="permitType"><option value="0.033">Residencial · 0,033 UPF/m²</option><option value="0.055">Comercial · 0,055 UPF/m²</option><option value="0.01">Condomínio · 0,01 UPF/m²</option><option value="0.002">Loteamento · 0,002 UPF/m²</option><option value="0.0016">Sítio de lazer · 0,0016 UPF/m²</option></select></label></div><div class="quick-tax-output"><span>Estimativa</span><strong id="permitResult">R$ 0,00</strong></div><button class="button button-mini button-outline" data-add-quick="permit" type="button">+ incluir</button></article>
+                <article class="quick-tax"><div class="quick-tax-icon">▦</div><div class="quick-tax-title"><h3>IPTU estimado</h3><p>Percentual de referência sobre o valor venal</p></div><label class="field"><span>Valor venal municipal</span><div class="currency-input compact"><span>R$</span><input id="iptuBase" data-money inputmode="decimal" placeholder="0,00"></div></label><label class="field"><span>Classificação</span><select id="iptuRate"></select></label><div class="quick-tax-output"><span>Estimativa anual</span><strong id="iptuResult">R$ 0,00 / ano</strong></div><button class="button button-mini button-outline" data-add-quick="iptu" type="button">+ incluir</button></article>
+              </div>
+            </section>
+            <section class="panel-card catalog-card">
+              <div class="section-heading"><span class="section-index">B</span><div><h2>Catálogo de taxas</h2><p>Busque um item e ajuste a quantidade ou metragem.</p></div></div>
+              <label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="taxSearch" type="search" placeholder="Buscar taxa, licença, vistoria..." autocomplete="off"><kbd>⌘ K</kbd></label>
+              <div class="catalog-list" id="taxCatalog"></div>
+            </section>
+            <details class="unpriced-panel"><summary>Custos sem valor fixo na referência (24 itens) <span>Confirmar no órgão ou no protocolo</span></summary><div class="unpriced-list" id="unpricedList"></div></details>
+          </div>
+          <aside class="taxes-sidebar">
+            <section class="tax-total-card"><div class="result-topline"><span class="live-mark"></span> CUSTOS DO ATENDIMENTO</div><h2>Despesas estimadas</h2><p>Itens selecionados para esta simulação.</p><div class="selected-tax-list" id="selectedTaxList"><div class="tax-empty">Inclua uma estimativa rápida ou escolha um item do catálogo.</div></div><div class="tax-buffer-row"><label for="taxBuffer">Reserva adicional</label><div class="input-suffix"><input id="taxBuffer" type="number" min="0" max="100" step="1" value="10"><span>%</span></div></div><div class="tax-totals"><div><span>Subtotal</span><strong id="taxSubtotal">R$ 0,00</strong></div><div><span>Reserva estimada</span><strong id="taxBufferAmount">R$ 0,00</strong></div><div class="tax-grand"><span>Total estimado</span><strong id="taxGrandTotal">R$ 0,00</strong></div></div><label class="tax-print-toggle"><input id="includeTaxCostsSecond" type="checkbox"> Discriminar na impressão do pagamento</label><button class="button button-dark button-wide" id="returnToPayment" type="button">Voltar à simulação <span aria-hidden="true">→</span></button><button class="text-button" id="clearTaxes" type="button">Esvaziar despesas</button></section>
+            <div class="estimate-disclaimer"><strong>Estimativa, não guia de arrecadação</strong><p>Os valores podem mudar conforme exercício, avaliação e análise do órgão competente. Confirme cada valor no DAM ou na tabela oficial vigente.</p></div>
+          </aside>
+        </div>
+        <footer class="page-footer"><span>CLAREZA · IPTU E TAXAS</span><span>Referências iniciais: material de taxas municipais 2026 fornecido com o pedido.</span></footer>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="settings-dialog" id="settingsDialog" aria-labelledby="settingsTitle">
+    <form method="dialog" class="dialog-close-row"><button class="icon-button" aria-label="Fechar configurações" value="close">×</button></form>
+    <div class="dialog-eyebrow">PERSONALIZE SEU DOCUMENTO</div><h2 id="settingsTitle">Marca e impressão</h2><p class="dialog-copy">Essas informações aparecem no cabeçalho do plano impresso. Ficam salvas apenas neste navegador.</p>
+    <div class="settings-fields">
+      <label class="field"><span>Nome profissional / marca</span><input id="profileName" value="André Barros Costa"></label>
+      <label class="field"><span>Profissão e registros</span><input id="profileRole" value=""></label>
+      <label class="field"><span>Endereço profissional</span><input id="profileAddress" value=""></label>
+      <div class="form-grid"><label class="field"><span>Telefone</span><input id="profilePhone" value=""></label><label class="field"><span>E-mail</span><input id="profileEmail" type="email" value=""></label></div>
+    </div>
+    <div class="settings-tools"><button class="button button-outline" id="exportSettings" type="button">Exportar cópia</button><button class="button button-outline" id="importSettings" type="button">Importar cópia</button><input id="settingsFile" type="file" accept="application/json,.json" hidden></div>
+    <div class="dialog-actions"><button class="button button-outline" id="resetSettings" type="button">Restaurar padrão</button><button class="button button-dark" id="saveSettings" type="button">Salvar configurações</button></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <section class="print-document" id="printDocument" aria-label="Pré-visualização do plano de pagamento"></section>
+  <script src="app.js" defer></script>
+</body>
+</html>
